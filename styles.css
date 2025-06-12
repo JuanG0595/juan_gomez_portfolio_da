@@ -1,18 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;700&display=swap');
 
-/* Variables CSS para colores y fuentes */
+/* Variables CSS for colors and fonts */
 :root {
-    --primary-color: #0A362B; /* Verde Oscuro Profundo (similar a un verde botella o pino) */
-    --secondary-color: #1A1A1A; /* Negro Carbón (no un negro puro, para evitar dureza) */
-    --accent-color: #8D99AE; /* Gris Azulado Frío (un acento sutil para un toque moderno) */
-    --background-color: #F8F8F8; /* Blanco Puro (base limpia para todo) */
-    --text-color: #333333; /* Gris Oscuro para Texto (legible y sofisticado) */
-    --light-bg: #EAEAEA; /* Gris Muy Claro (para secciones alternas o tarjetas) */
-    --font-primary: 'Playfair Display', serif; /* Elegante y con personalidad (para títulos) */
-    --font-secondary: 'Inter', sans-serif; /* Moderna, limpia y muy legible (para cuerpo de texto) */
+    --primary-color: #0A362B; 
+    --secondary-color: #1A1A1A; 
+    --accent-color: #8D99AE;
+    --background-color: #F8F8F8;
+    --text-color: #333333;
+    --light-bg: #EAEAEA;
+    --font-primary: 'Playfair Display', serif;
+    --font-secondary: 'Inter', sans-serif;
+
+    /* New colors for difficulty levels */
+    --beginner-color: #28a745; /* Green */
+    --intermediate-color: #ffc107; /* Yellow */
+    --advanced-color: #dc3545; /* Red */
+    --tool-tag-bg: #5a6268; /* Grey for general tool tags */
 }
 
-/* Reset Básico y Estilos Generales */
+/* Basic Reset and General Styles */
 * {
     margin: 0;
     padding: 0;
@@ -20,11 +26,11 @@
 }
 
 body {
-    font-family: var(--font-primary);
+    font-family: var(--font-secondary); /* Changed to Inter for body text for better readability */
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
-    scroll-behavior: smooth; /* Desplazamiento suave para los enlaces internos */
+    scroll-behavior: smooth;
 }
 
 .container {
@@ -34,6 +40,7 @@ body {
 }
 
 h1, h2, h3 {
+    font-family: var(--font-primary); /* Keep Playfair for headings */
     color: var(--primary-color);
     margin-bottom: 20px;
 }
@@ -63,18 +70,8 @@ a:hover {
 }
 
 /* Header */
-
-/* header {
-    background: var(--primary-color);
-    color: #fff;
-    padding: 60px 0;
-    text-align: center;
-    position: relative; 
-}    
-*/
-
 header {
-    background-image: url("assets/banner_imagen_7.jpg");
+    background-image: url("assets/banne_8.jpg");
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -82,7 +79,6 @@ header {
     position: relative;
     overflow: hidden; 
     
-   
     height: 100vh;
     display: flex;
     justify-content: center; 
@@ -101,7 +97,7 @@ header::before {
     background-color: rgba(0, 0, 0, 0.4); 
     z-index: 1; 
 }
-.container {
+header .container { /* Specificity for header's container */
     position: relative; 
     z-index: 2;
     max-width: 960px; 
@@ -114,9 +110,9 @@ header::before {
 }
 
 .profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
+    width: 250px;
+    height: 350px;
+    border-radius: 10%;
     object-fit: cover;
     border: 5px solid #fff;
     margin-bottom: 20px;
@@ -130,15 +126,15 @@ header h1 {
     font-size: 3.5em; 
     margin-bottom: 10px;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    font-family: 'Playfair Display', serif; 
+    font-family: var(--font-primary); 
 }
 
 .tagline {
-     font-size: 1.4em; 
+    font-size: 1.4em; 
     margin-bottom: 30px;
     opacity: 1; 
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-secondary); /* Changed to Inter */
 }
 
 header nav ul {
@@ -199,14 +195,15 @@ header nav ul li a:hover::after {
     font-size: 1.1em;
     margin-bottom: 15px;
     text-align: justify;
+    font-family: var(--font-secondary); /* Changed to Inter */
 }
 
 /* Skills */
 .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
     gap: 30px;
-    text-align: center;
 }
 
 .skill-category {
@@ -215,6 +212,8 @@ header nav ul li a:hover::after {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1 1 280px; 
+    max-width: 320px; 
 }
 
 .skill-category:hover {
@@ -226,6 +225,7 @@ header nav ul li a:hover::after {
     color: var(--secondary-color);
     margin-bottom: 15px;
     font-size: 1.5em;
+    font-family: var(--font-primary); /* Keep Playfair */
 }
 
 .skill-category ul {
@@ -239,7 +239,8 @@ header nav ul li a:hover::after {
     color: var(--text-color);
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* Removed justify-content: center; for left alignment */
+    font-family: var(--font-secondary); /* Changed to Inter */
 }
 
 .skill-category ul li i {
@@ -248,7 +249,60 @@ header nav ul li a:hover::after {
 }
 
 
-/* Projects */
+/* --- Projects Section Styles --- */
+.project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Space between filter groups */
+    margin-bottom: 40px;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px; /* Space between buttons and heading */
+    font-family: var(--font-secondary);
+}
+
+.filter-group h4 {
+    margin: 0;
+    color: var(--secondary-color);
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.filter-btn {
+    background-color: var(--light-bg);
+    color: var(--text-color);
+    border: 1px solid var(--accent-color);
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-family: var(--font-secondary);
+}
+
+.filter-btn:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+    border-color: var(--primary-color);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -261,6 +315,8 @@ header nav ul li a:hover::after {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Make it a flex container */
+    flex-direction: column; /* Stack children vertically */
 }
 
 .project-card:hover {
@@ -285,35 +341,85 @@ header nav ul li a:hover::after {
     margin: 0 20px 15px;
     font-size: 0.95em;
     color: var(--secondary-color);
+    flex-grow: 1; /* Allows description to take available space */
+    font-family: var(--font-secondary);
 }
 
-.project-tech {
-    margin: 0 20px 15px;
+/* New: Project Meta (Difficulty & Tools) */
+.project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* Pushes difficulty to left, tools to right */
+    align-items: center;
+    margin: 15px 20px;
+    gap: 10px; /* Space between elements */
+}
+
+.difficulty-level {
+    display: inline-flex; /* Allows icon and text to sit together */
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: bold;
+    color: #fff; /* White text for all difficulty badges */
+    min-width: 90px; /* Ensure consistent width */
+    justify-content: center;
+    font-family: var(--font-secondary);
+}
+
+.difficulty-level i {
+    margin-right: 7px;
+    font-size: 0.9em;
+}
+
+/* Specific colors for difficulty levels */
+.difficulty-level.beginner {
+    background-color: var(--beginner-color);
+}
+
+.difficulty-level.intermediate {
+    background-color: var(--intermediate-color);
+}
+
+.difficulty-level.advanced {
+    background-color: var(--advanced-color);
+}
+
+.tools-used {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    justify-content: flex-end; /* Align tools to the right */
 }
 
-.project-tech span {
-    background-color: var(--primary-color);
+.tools-used span {
+    background-color: var(--tool-tag-bg); /* Use a consistent grey for tools */
     color: #fff;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.8em;
-    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.75em;
+    font-weight: 500;
+    white-space: nowrap; /* Prevent tags from breaking */
+    font-family: var(--font-secondary);
 }
+
 
 .project-links {
     display: flex;
     justify-content: flex-end;
     padding: 15px 20px;
     border-top: 1px solid var(--light-bg);
+    margin-top: auto; /* Pushes links to the bottom of the card */
 }
 
 .project-links a {
-    margin-left: 20px;
-    font-size: 1.1em;
+    margin-left: 15px; /* Reduced margin for more links */
+    font-size: 1em; /* Adjusted font size */
     color: var(--secondary-color);
+    display: inline-flex; /* Align icon and text */
+    align-items: center;
+    font-family: var(--font-secondary);
 }
 
 .project-links a:hover {
@@ -344,6 +450,7 @@ header nav ul li a:hover::after {
     margin-bottom: 8px;
     font-weight: bold;
     color: var(--secondary-color);
+    font-family: var(--font-secondary);
 }
 
 .form-group input[type="text"],
@@ -353,7 +460,7 @@ header nav ul li a:hover::after {
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-family: var(--font-primary);
+    font-family: var(--font-secondary); /* Consistent font */
     font-size: 1em;
 }
 
@@ -372,6 +479,7 @@ header nav ul li a:hover::after {
     font-size: 1.1em;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-family: var(--font-secondary);
 }
 
 .btn:hover {
@@ -382,26 +490,40 @@ header nav ul li a:hover::after {
     text-align: center;
     margin-top: 20px;
     font-weight: bold;
+    font-family: var(--font-secondary);
 }
 
 .success-message {
-    color: var(--accent-color);
+    color: var(--beginner-color); /* Green for success */
 }
 
 .error-message {
-    color: red;
+    color: var(--advanced-color); /* Red for error */
 }
 
 /* Footer */
 footer {
-    background-color: var(--text-color);
+    background-color: var(--secondary-color); /* Darker footer for contrast */
     color: #fff;
     text-align: center;
     padding: 30px 0;
     font-size: 0.9em;
+    font-family: var(--font-secondary);
 }
 
 /* Responsive Design */
+@media (max-width: 992px) { /* Added a new breakpoint for tablets */
+    .project-filters {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    .filter-group {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
 @media (max-width: 768px) {
     header h1 {
         font-size: 2.5em;
@@ -421,7 +543,7 @@ footer {
     }
 
     .skills-grid, .project-grid {
-        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+        grid-template-columns: 1fr; 
     }
 
     .section {
@@ -430,6 +552,16 @@ footer {
 
     h2 {
         font-size: 2em;
+    }
+    
+    .project-card .project-links {
+        flex-direction: column; /* Stack links vertically on small screens */
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .project-links a {
+        margin-left: 0; /* Remove left margin for stacked links */
     }
 }
 
@@ -461,5 +593,16 @@ footer {
 
     .skill-category ul li {
         font-size: 0.95em;
+    }
+    .project-filters {
+        padding: 15px;
+        gap: 10px;
+    }
+    .filter-group h4 {
+        font-size: 1em;
+    }
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 0.8em;
     }
 }
