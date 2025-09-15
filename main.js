@@ -5,9 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault(); // Prevent default anchor click behavior
 
             // Scroll to the section corresponding to the href attribute
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth' // Smooth scroll effect
-            });
+            const targetSection = document.querySelector(this.getAttribute('href'));
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth' // Smooth scroll effect
+                });
+            }
         });
     });
 
@@ -25,18 +28,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Get current active filters from both groups
             // Assuming there are two filter groups: one for difficulty and one for tools
-            const activeDifficulty = document.querySelector('.filter-group:nth-child(1) .filter-btn.active').dataset.filter;
-            const activeTool = document.querySelector('.filter-group:nth-child(2) .filter-btn.active').dataset.filter;
+            const activeDifficultyBtn = document.querySelector('.filter-group:nth-child(1) .filter-btn.active');
+            const activeToolBtn = document.querySelector('.filter-group:nth-child(2) .filter-btn.active');
+
+            const activeDifficulty = activeDifficultyBtn ? activeDifficultyBtn.dataset.filter : 'all';
+            const activeTool = activeToolBtn ? activeToolBtn.dataset.filter : 'all';
 
             projectCards.forEach(card => {
                 const cardDifficulty = card.dataset.difficulty;
                 // Split tools string into an array to handle multiple tools per project
-                const cardTools = card.dataset.tools.split(','); 
+                const cardTools = card.dataset.tools.split(',').map(tool => tool.trim().toLowerCase());
 
                 // Check if card matches both active filters
                 const matchesDifficulty = (activeDifficulty === 'all' || cardDifficulty === activeDifficulty);
                 // Check if the card's tools array includes the active tool filter
-                const matchesTool = (activeTool === 'all' || cardTools.includes(activeTool));
+                const matchesTool = (activeTool === 'all' || cardTools.includes(activeTool.toLowerCase()));
 
                 if (matchesDifficulty && matchesTool) {
                     card.style.display = 'block'; // Show the card
@@ -53,39 +59,35 @@ document.addEventListener('DOMContentLoaded', function() {
         currentYearSpan.textContent = new Date().getFullYear();
     }
 
-    // --- Basic Contact Form Submission (Frontend only) ---
-    // For a real-world scenario, you'd need a backend to process emails.
-    const contactForm = document.getElementById('contact-form');
-    const formMessages = document.getElementById('form-messages');
+    // // --- Basic Contact Form Submission (Frontend only) ---
+    // // For a real-world scenario, you'd need a backend to process emails.
+    // const contactForm = document.getElementById('contact-form');
+    // const formMessages = document.getElementById('form-messages');
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent default form submission
+    // if (contactForm) {
+    //     contactForm.addEventListener('submit', function(e) {
+    //         e.preventDefault(); // Prevent default form submission
 
-            // Here you would typically send the form data to a backend server
-            // using fetch() or XMLHttpRequest.
-            // For this example, we'll just simulate a success/error message.
+    //         const name = document.getElementById('name').value.trim();
+    //         const email = document.getElementById('email').value.trim();
+    //         const message = document.getElementById('message').value.trim();
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
+    //         // Simple client-side validation
+    //         if (name && email && message) {
+    //             // Simulate success message
+    //             formMessages.innerHTML = '<p class="success-message">Message sent successfully! I will contact you soon.</p>';
+    //             formMessages.style.color = "green"; // Matches CSS success message style
+    //             contactForm.reset(); // Clear the form fields
+    //         } else {
+    //             // Simulate error message
+    //             formMessages.innerHTML = '<p class="error-message">Please fill in all fields.</p>';
+    //             formMessages.style.color = "red"; // Matches CSS error message style
+    //         }
 
-            // Simple client-side validation
-            if (name && email && message) {
-                // Simulate success message (translated to English)
-                formMessages.innerHTML = '<p class="success-message">Message sent successfully! I will contact you soon.</p>';
-                formMessages.style.color = "green"; // Assuming you have CSS for success messages
-                contactForm.reset(); // Clear the form fields
-            } else {
-                // Simulate error message (translated to English)
-                formMessages.innerHTML = '<p class="error-message">Please fill in all fields.</p>';
-                formMessages.style.color = "red"; // Assuming you have CSS for error messages
-            }
-
-            // Clear messages after a few seconds
-            setTimeout(() => {
-                formMessages.innerHTML = '';
-            }, 5000); // Messages disappear after 5 seconds
-        });
-    }
+    //         // Clear messages after 5 seconds
+    //         setTimeout(() => {
+    //             formMessages.innerHTML = '';
+    //         }, 5000);
+    //     });
+    // }
 });

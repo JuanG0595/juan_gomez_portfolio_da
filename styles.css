@@ -239,7 +239,6 @@ header nav ul li a:hover::after {
     color: var(--text-color);
     display: flex;
     align-items: center;
-    /* Removed justify-content: center; for left alignment */
     font-family: var(--font-secondary); /* Changed to Inter */
 }
 
