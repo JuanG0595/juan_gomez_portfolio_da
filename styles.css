@@ -439,7 +439,9 @@ header nav ul li a:hover::after {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
-
+.contact-text{
+    margin-bottom: 20px;
+}
 .form-group {
     margin-bottom: 20px;
 }
